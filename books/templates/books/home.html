@@ -1,0 +1,28 @@
+{% extends "books/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Books on Sale</h2>
+    <div class="row">
+        {% for book in books_on_sale %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                {% if book.image %}
+                    <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.title }}">
+                {% else %}
+                    <img src="{% static 'books/default.jpg' %}" class="card-img-top" alt="No image available">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <a class="mr-2" href="{% url 'book-detail' book.pk %}">{{ book.title }}</a>
+                    <p class="card-text text-muted">by {{ book.author }}</p>
+                    <p class="card-text"><strong>₹{{ book.price }}</strong></p>
+                    <a href="{% url 'book-create' %}?title={{ book.title }}&author={{ book.author }}&price={{ book.price }}" class="btn btn-outline-primary mt-auto">Add</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No books available for sale.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
