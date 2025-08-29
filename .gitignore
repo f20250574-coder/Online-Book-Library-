@@ -1,0 +1,22 @@
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+
+# IDE / Editor #
+*.sublime-project
+*.sublime-workspace
+.vscode/
+.idea/
+
+# Environment #
+venv/
+.env
+*.env
+
+# OS files #
+.DS_Store
+Thumbs.db
